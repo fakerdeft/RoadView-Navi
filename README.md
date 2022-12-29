@@ -1,5 +1,5 @@
-# RoadView-Nevi
-RoadView&amp;Nevi System
+# RoadView-Navi
+RoadView&amp;Navi System
 
 ## 기능 목록
 1. 입력 뷰
