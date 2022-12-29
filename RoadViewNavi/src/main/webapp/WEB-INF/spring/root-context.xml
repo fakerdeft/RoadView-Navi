@@ -4,5 +4,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 
+		*root-context.xml
+		서버 구동과 동시에 web.xml 파일을 거쳐서 바로 로딩되는 문서
+		- 서버 구동과 동시에 세팅해야하는 내용들을 작성(주로 DB연결, 트랜잭션 처리, 내외부 모듈 연결등등)
+	-->
 		
 </beans>
