@@ -1,5 +1,31 @@
 package com.spring.RoadViewNavi.Model.Repository;
 
-public class RoadViewNaviDao {
+import org.springframework.stereotype.Repository;
 
+@Repository
+public class RoadViewNaviDao {
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
