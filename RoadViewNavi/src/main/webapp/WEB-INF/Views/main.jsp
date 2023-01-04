@@ -7,6 +7,14 @@
 <title>RoadViewNavi</title>
 </head>
 <body>
-	zzz
+	<div id="outer">
+		<table>
+			<tr>
+				<th>
+					아이디:
+				</th>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
