@@ -8,13 +8,9 @@
 </head>
 <body>
 	<div id="outer">
-		<table>
-			<tr>
-				<th>
-					아이디:
-				</th>
-			</tr>
-		</table>
+		<div align="center">
+			로그인 후 이용 가능합니다.
+		</div>
 	</div>
 </body>
 </html>
