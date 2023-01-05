@@ -9,5 +9,29 @@
 		서버 구동과 동시에 web.xml 파일을 거쳐서 바로 로딩되는 문서
 		- 서버 구동과 동시에 세팅해야하는 내용들을 작성(주로 DB연결, 트랜잭션 처리, 내외부 모듈 연결등등)
 	-->
+	<!-- DB 연결 설정 -->
+	<!-- 1단계. DB연결을 위한 도구 설정 -->
+	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+		<!-- 어느 DB에 접속할것인지 설정 -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="ROADNAVI"/>
+		<property name="password" value="ROADNAVI"/>
+	</bean>		
+	
+	 <!-- 2단계. Mybatis Spring에서 제공하는 SQL 명령어 실행을 위한 도구 등록 -->
+	 <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+	 	<!-- mybatis 설정파일의 위치를 설정(src/main/resources)하여 설정값을 가져오겠다.
+	 		이때 classpath: 구문이 resources 폴더를 의미한다. -->
+	 	<property name="configLocation" value="classpath:mybatis-config.xml"/>
+	 	<!-- 연결을 위한 도구 참조(위에서 만든 dataSource Bean을 참조) -->
+	 	<property name="dataSource" ref="dataSource"/>
+	 </bean>
+	 
+  	<!-- 3단계. SQL 구문 실행을 위한 템플릿을 제공하는 도구 등록 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+		<!-- SQL명령어 실행을 위한 도구에 대한 참조 설정 -->
+		<constructor-arg ref="sqlSessionFactory"/>		
+	</bean>
 		
 </beans>
