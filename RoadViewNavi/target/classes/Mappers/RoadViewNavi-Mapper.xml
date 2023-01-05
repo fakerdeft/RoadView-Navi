@@ -1,1 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="RoadViewNaviMapper">
+	<resultMap type="user" id="UserResult">
+		<result column="USER_NO" property="userNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PW" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="USER_PHONE" property="userPhone"/>
+		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="ENROLL_STATUS" property="updateDate"/>
+		<result column="UPDATE_DATE" property="enrollStatus"/>
+	</resultMap>
+	
+	
+	
+	
+	
+	
+</mapper>
