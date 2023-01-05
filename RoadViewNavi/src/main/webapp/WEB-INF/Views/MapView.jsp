@@ -4,13 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>RoadViewNavi</title>
 </head>
 <body>
-	<div id="outer">
-		<div align="center">
-			로그인 창
-		</div>
+	<div>
+		
 	</div>
 </body>
 </html>
