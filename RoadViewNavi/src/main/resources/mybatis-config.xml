@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<!-- 별칭등록 -->
+	<typeAliases>
+		<typeAlias type="com.spring.RoadViewNavi.Model.VO.User" alias="user" />
+
+	</typeAliases>
+	<mappers>
+		<mapper resource="/Mappers/RoadViewNavi-Mapper.xml" />
+	</mappers>
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
