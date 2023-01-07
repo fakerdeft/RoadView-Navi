@@ -10,6 +10,9 @@
 	<div id="outer">
 		<div align="center">
 			로그인 창
+			<form action='insert.do' method='post'>
+			
+			</form>
 		</div>
 	</div>
 </body>

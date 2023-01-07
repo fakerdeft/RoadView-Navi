@@ -13,9 +13,20 @@
 		<result column="UPDATE_DATE" property="enrollStatus"/>
 	</resultMap>
 	
-	
-	
-	
+	<insert id="insertUser" parameterType="user">
+		INSERT INTO MEMBER (USER_NO
+							,USER_ID
+							,USER_PWD
+							,USER_NAME
+							,USER_PHONE
+							,USER_EMAIL) 
+			VALUES (SEQ_USERNO.NEXTVAL
+					,#{userId}
+					,#{userPwd}
+					,#{userName}
+					,#{userPhone}
+					,#{userEmail}) 	
+ 	</insert>
 	
 	
 </mapper>
