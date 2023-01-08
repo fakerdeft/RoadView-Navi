@@ -46,7 +46,7 @@ public class RoadViewNaviController {
 	}
 	
 	// 로그인 메서드
-	@RequestMapping("login.me")
+	@RequestMapping("login.do")
 	public ModelAndView loginMember(User user, HttpSession session, ModelAndView mv) {
 		User loginUser = roadViewNaviService.loginUser(user);
 		//loginUser : 아이디만으로 조회해온 회원정보
