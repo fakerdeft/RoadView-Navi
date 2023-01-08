@@ -18,6 +18,10 @@ public class RoadViewNaviService {
 	public int insertUser(User user) {
 		return roadViewNaviDao.insertUser(sqlSession, user);
 	}
+
+	public User loginUser(User user) {
+		return roadViewNaviDao.loginUser(sqlSession, user);
+	}
 }
 
 

@@ -13,8 +13,9 @@
 		<result column="UPDATE_DATE" property="enrollStatus"/>
 	</resultMap>
 	
+	<!-- 회원가입 -->
 	<insert id="insertUser" parameterType="user">
-		INSERT INTO MEMBER (USER_NO
+		INSERT INTO USER_TBL (USER_NO
 							,USER_ID
 							,USER_PWD
 							,USER_NAME
@@ -28,5 +29,13 @@
 					,#{userEmail}) 	
  	</insert>
 	
+	<!-- 로그인 -->
+	<select id="loginUser" parameterType="user" resultMap="UserResult">
+		SELECT *
+		FROM USER_TBL
+		WHERE USER_ID = #{userId}
+<!-- 		AND USER_PWD = #{userPwd} 암호화 전 구문 -->
+		AND ENROLL_STATUS = 'Y'
+	</select>
 	
 </mapper>

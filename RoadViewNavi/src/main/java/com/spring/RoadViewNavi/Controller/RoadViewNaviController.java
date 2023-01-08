@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.RoadViewNavi.Model.Service.RoadViewNaviService;
@@ -21,9 +22,9 @@ public class RoadViewNaviController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	//회원가입 메서드
+	// 회원가입 메서드
 	@PostMapping("insert.do")
-	public String insertUser(User user,HttpSession session,Model model) {
+	public String insertUser(User user, HttpSession session, Model model) {
 		
 		// 1. 한글 깨짐 - web.xml에서 encodingFilter를 통해 해결
 		// 2. 나이에 빈값이 들어오면 typeMismatchException 발생
@@ -36,7 +37,7 @@ public class RoadViewNaviController {
 		String encPwd = bCryptPasswordEncoder.encode(user.getUserPwd());
 		user.setUserPwd(encPwd);
 		int result = roadViewNaviService.insertUser(user);
-		if(result > 0) {
+		if (result > 0) {
 			session.setAttribute("alertMsg","회원 가입 성공!");
 		} else if (result <= 0){
 			model.addAttribute("alertMsg","회원 가입 실패!");
@@ -44,10 +45,31 @@ public class RoadViewNaviController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("map.do") //지도 페이지로 이동
-	public ModelAndView GoMapPage(HttpSession session, ModelAndView mv) {
-		User loginUser = (User)session.getAttribute("loginUser");
-		mv.addObject("loginUser", loginUser).setViewName("Views/MapView");
+	// 로그인 메서드
+	@RequestMapping("login.me")
+	public ModelAndView loginMember(User user, HttpSession session, ModelAndView mv) {
+		User loginUser = roadViewNaviService.loginUser(user);
+		//loginUser : 아이디만으로 조회해온 회원정보
+		//loginUser의 userPwd 필드에는 암호화되어서 DB에 저장된 암호비밀번호가 들어있다.
+		//그 암호화된 비밀번호와 사용자가 입력한 비밀번호가 암호화되었을 시에 일치하게 되는지 
+		//확인해주는 메서드를 사용하여 해당 정보가 일치하는지 구분한다.
+		//이때 사용하는 메서드는 BCryptPasswordEncoder 객체의 matches 메서드이다.
+		//matches(평문,암호문)을 작성하면 내부적으로 복호화 작업이 이루어져
+		//두 데이터가 일치하는지 확인하여 true/false로 반환한다.
+		if (loginUser != null && bCryptPasswordEncoder.matches(user.getUserPwd(), loginUser.getUserPwd())) {
+			session.setAttribute("loginUser", loginUser);
+			mv.setViewName("redirect:/"); //메인화면 재요청
+			return mv;
+		}		
+		mv.addObject("alertMsg", "로그인 실패!")
+		  .setViewName("common/errorPage");
+		return mv;
+	}
+	
+	//지도 페이지로 이동
+	@GetMapping("map.do")
+	public ModelAndView GoMapPage(ModelAndView mv) {
+		mv.setViewName("Views/MapView");
 		return mv;
 	}
 	
