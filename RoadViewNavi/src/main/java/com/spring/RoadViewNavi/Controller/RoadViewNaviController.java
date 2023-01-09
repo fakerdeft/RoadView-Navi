@@ -22,10 +22,15 @@ public class RoadViewNaviController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	//회원가입 페이지로 이동
+	@GetMapping("insert.me")
+	public String insertUserForm() {
+		return "Views/insertUserForm";
+	}
+	
 	// 회원가입 메서드
 	@PostMapping("insert.do")
 	public String insertUser(User user, HttpSession session, Model model) {
-		
 		// 1. 한글 깨짐 - web.xml에서 encodingFilter를 통해 해결
 		// 2. 나이에 빈값이 들어오면 typeMismatchException 발생
 		//	  -User VO에 age필드를 String자료형으로 변경하여 해결 (lombok활용)
@@ -46,7 +51,7 @@ public class RoadViewNaviController {
 	}
 	
 	// 로그인 메서드
-	@RequestMapping("login.do")
+	@RequestMapping("logIn.do")
 	public ModelAndView loginMember(User user, HttpSession session, ModelAndView mv) {
 		User loginUser = roadViewNaviService.loginUser(user);
 		//loginUser : 아이디만으로 조회해온 회원정보
@@ -64,6 +69,13 @@ public class RoadViewNaviController {
 		mv.addObject("alertMsg", "로그인 실패!")
 		  .setViewName("common/errorPage");
 		return mv;
+	}
+	
+	//로그아웃
+	@RequestMapping("logOut.do")
+	public String logOutUser(HttpSession session) {
+		session.removeAttribute("loginUser");
+		return "redirect:/";
 	}
 	
 	//지도 페이지로 이동
