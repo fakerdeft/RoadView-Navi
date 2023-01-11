@@ -22,6 +22,10 @@ public class RoadViewNaviService {
 	public User loginUser(User user) {
 		return roadViewNaviDao.loginUser(sqlSession, user);
 	}
+
+	public int updateUser(User user) {
+		return roadViewNaviDao.updateUser(sqlSession, user);
+	}
 }
 
 

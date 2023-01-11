@@ -13,7 +13,11 @@ public class RoadViewNaviDao {
 	}
 
 	public User loginUser(SqlSessionTemplate sqlSession, User user) {
-		return sqlSession.selectOne("memberMapper.loginUser", user);
+		return sqlSession.selectOne("RoadViewNaviMapper.loginUser", user);
+	}
+
+	public int updateUser(SqlSessionTemplate sqlSession, User user) {
+		return sqlSession.update("RoadViewNaviMapper.updateUser", user);
 	}
 	
 }

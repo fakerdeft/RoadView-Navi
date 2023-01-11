@@ -38,4 +38,27 @@
 		AND ENROLL_STATUS = 'Y'
 	</select>
 	
+	<update id="updateUser" parameterType="user">
+		UPDATE USER_TBL
+		SET USER_NAME = #{userName},
+			USER_PHONE = #{userPhone},
+			USER_EMAIL = #{userEmail}
+			UPDATE_DATE = SYSDATE
+		WHERE USER_ID = #{userId}
+		AND ENROLL_STATUS = 'Y'
+	</update>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
