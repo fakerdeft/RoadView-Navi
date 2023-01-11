@@ -25,7 +25,7 @@ public class RoadViewNaviController {
 	//회원가입 페이지로 이동
 	@GetMapping("insert.me")
 	public String insertUserForm() {
-		return "Views/insertUserForm";
+		return "Views/InsertUserForm";
 	}
 	
 	// 회원가입 메서드
@@ -81,7 +81,7 @@ public class RoadViewNaviController {
 	//마이 페이지로 이동
 	@GetMapping("myPage.me")
 	public String myPage() {
-		return "Views/myPage";
+		return "Views/MyPage";
 	}
 	
 	//회원 정보 수정
@@ -94,7 +94,7 @@ public class RoadViewNaviController {
 			
 			//마이페이지 재요청(alertMsg)
 			session.setAttribute("alertMsg","수정 성공!");
-			return "redirect:/myPage.me";
+			return "redirect:/MyPage.me";
 		}
 		//실패시 에러페이지
 		model.addAttribute("alertMsg","회원 정보 수정 실패!");
