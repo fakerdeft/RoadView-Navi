@@ -103,7 +103,7 @@ public class RoadViewNaviController {
 	
 	//지도 페이지로 이동
 	@GetMapping("map.do")
-	public ModelAndView GoMapPage(ModelAndView mv) {
+	public ModelAndView goMapPage(ModelAndView mv) {
 		mv.setViewName("Views/MapView");
 		return mv;
 	}
