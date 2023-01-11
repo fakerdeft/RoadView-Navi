@@ -19,6 +19,10 @@ public class RoadViewNaviDao {
 	public int updateUser(SqlSessionTemplate sqlSession, User user) {
 		return sqlSession.update("RoadViewNaviMapper.updateUser", user);
 	}
+
+	public int deleteUser(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.update("RoadViewNaviMapper.deleteUser", userId);
+	}
 	
 }
 

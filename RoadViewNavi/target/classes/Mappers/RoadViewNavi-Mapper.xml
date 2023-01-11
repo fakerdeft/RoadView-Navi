@@ -48,6 +48,14 @@
 		AND ENROLL_STATUS = 'Y'
 	</update>
 	
+	<update id="deleteUser" parameterType="String">
+		UPDATE USER_TBL
+		SET UPDATE_DATE = SYSDATE,
+			ENROLL_STATUS = 'N'
+		WHERE USER_ID = #{userId}
+		AND ENROLL_STATUS = 'Y'
+	</update>
+	
 </mapper>
 
 

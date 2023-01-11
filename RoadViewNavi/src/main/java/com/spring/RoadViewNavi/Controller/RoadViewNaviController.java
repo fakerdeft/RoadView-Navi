@@ -79,13 +79,13 @@ public class RoadViewNaviController {
 	}
 	
 	//마이 페이지로 이동
-	@GetMapping("myPage.me")
+	@GetMapping("myPage.do")
 	public String myPage() {
 		return "Views/MyPage";
 	}
 	
 	//회원 정보 수정
-	@RequestMapping("update.me")
+	@RequestMapping("update.do")
 	public String updateMember(User user,HttpSession session,Model model) {
 		int updateResult = roadViewNaviService.updateUser(user);
 		if(updateResult > 0) { //성공시 session에 있던 기존 loginUser	지우고 새 loginUser
@@ -98,6 +98,23 @@ public class RoadViewNaviController {
 		}
 		//실패시 에러페이지
 		model.addAttribute("alertMsg","회원 정보 수정 실패!");
+		return "redirect:/";
+	}
+	
+	//회원탈퇴
+	@RequestMapping("delete.do")
+	public String deleteUser(String userPwd, HttpSession session, Model model) {
+		User loginUser = (User)session.getAttribute("loginUser");
+		if(bCryptPasswordEncoder.matches(userPwd, loginUser.getUserPwd())) {
+			int result = roadViewNaviService.deleteUser(loginUser.getUserId());
+			if(result > 0) { //성공
+				session.removeAttribute("loginUser");
+				session.setAttribute("alertMsg","탈퇴 성공!");
+				return "redirect:/";
+			}
+		}
+		//실패시 에러페이지
+		model.addAttribute("alertMsg","회원탈퇴 실패!");
 		return "redirect:/";
 	}
 	
