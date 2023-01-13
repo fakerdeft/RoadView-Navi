@@ -38,6 +38,7 @@
 		AND ENROLL_STATUS = 'Y'
 	</select>
 	
+	<!-- 회원정보수정 -->
 	<update id="updateUser" parameterType="user">
 		UPDATE USER_TBL
 		SET USER_NAME = #{userName},
@@ -48,6 +49,7 @@
 		AND ENROLL_STATUS = 'Y'
 	</update>
 	
+	<!-- 회원탈퇴 -->
 	<update id="deleteUser" parameterType="String">
 		UPDATE USER_TBL
 		SET UPDATE_DATE = SYSDATE,
