@@ -22,8 +22,8 @@ public class RoadViewNaviController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	//회원가입 페이지로 이동
-	@GetMapping("insert.me")
+	// 회원가입 페이지로 이동
+	@GetMapping("insert.do")
 	public String insertUserForm() {
 		return "Views/InsertUserForm";
 	}
@@ -50,7 +50,7 @@ public class RoadViewNaviController {
 		return "redirect:/";
 	}
 	
-	// 로그인 메서드
+	// 로그인
 	@RequestMapping("logIn.do")
 	public ModelAndView loginMember(User user, HttpSession session, ModelAndView mv) {
 		User loginUser = roadViewNaviService.loginUser(user);
@@ -71,37 +71,37 @@ public class RoadViewNaviController {
 		return mv;
 	}
 	
-	//로그아웃
+	// 로그아웃
 	@RequestMapping("logOut.do")
 	public String logOutUser(HttpSession session) {
 		session.removeAttribute("loginUser");
 		return "redirect:/";
 	}
 	
-	//마이 페이지로 이동
+	// 마이 페이지로 이동
 	@GetMapping("myPage.do")
 	public String myPage() {
 		return "Views/MyPage";
 	}
 	
-	//회원 정보 수정
+	// 회원 정보 수정
 	@RequestMapping("update.do")
 	public String updateMember(User user,HttpSession session,Model model) {
 		int updateResult = roadViewNaviService.updateUser(user);
-		if(updateResult > 0) { //성공시 session에 있던 기존 loginUser	지우고 새 loginUser
+		if(updateResult > 0) { // 성공시 session에 있던 기존 loginUser	지우고 새 loginUser
 			User updateUser = roadViewNaviService.loginUser(user);
 			session.setAttribute("loginUser", updateUser);
 			
-			//마이페이지 재요청(alertMsg)
+			// 마이페이지 재요청(alertMsg)
 			session.setAttribute("alertMsg","수정 성공!");
 			return "redirect:/MyPage.me";
 		}
-		//실패시 에러페이지
+		// 실패시 에러페이지
 		model.addAttribute("alertMsg","회원 정보 수정 실패!");
 		return "redirect:/";
 	}
 	
-	//회원탈퇴
+	// 회원탈퇴
 	@RequestMapping("delete.do")
 	public String deleteUser(String userPwd, HttpSession session, Model model) {
 		User loginUser = (User)session.getAttribute("loginUser");
@@ -113,12 +113,12 @@ public class RoadViewNaviController {
 				return "redirect:/";
 			}
 		}
-		//실패시 에러페이지
+		// 실패시 에러페이지
 		model.addAttribute("alertMsg","회원탈퇴 실패!");
 		return "redirect:/";
 	}
 	
-	//지도 페이지로 이동
+	// 지도 페이지로 이동
 	@GetMapping("map.do")
 	public ModelAndView goMapPage(ModelAndView mv) {
 		mv.setViewName("Views/MapView");
