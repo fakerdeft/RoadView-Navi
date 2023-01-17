@@ -7,6 +7,6 @@
 <title>RoadViewNavi</title>
 </head>
 <body>
-	<jsp:forward page="WEB-INF/Views/MapView.jsp" />
+	<jsp:forward page="WEB-INF/Views/main.jsp" />
 </body>
 </html>
