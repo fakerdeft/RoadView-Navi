@@ -50,9 +50,15 @@ public class RoadViewNaviController {
 		return "redirect:/";
 	}
 	
-	// 로그인
-	@RequestMapping("logIn.do")
-	public ModelAndView loginMember(User user, HttpSession session, ModelAndView mv) {
+	// 로그인 페이지로 이동
+	@GetMapping("logIn.do")
+	public String loginUser() {
+		return "LoginView";
+	}
+	
+	// 로그인 메서드
+	@PostMapping("logIn.do")
+	public ModelAndView loginUser(User user, HttpSession session, ModelAndView mv) {
 		User loginUser = roadViewNaviService.loginUser(user);
 		//loginUser : 아이디만으로 조회해온 회원정보
 		//loginUser의 userPwd 필드에는 암호화되어서 DB에 저장된 암호비밀번호가 들어있다.
@@ -65,9 +71,9 @@ public class RoadViewNaviController {
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/"); //메인화면 재요청
 			return mv;
-		}		
-		mv.addObject("alertMsg", "로그인 실패!")
-		  .setViewName("redirect:/");
+		}	
+		session.setAttribute("alertMsg", "로그인 실패!");
+		mv.setViewName("redirect:/");
 		return mv;
 	}
 	
