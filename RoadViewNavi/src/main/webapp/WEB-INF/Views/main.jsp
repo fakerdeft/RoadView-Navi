@@ -24,9 +24,11 @@
 <c:choose>
 	<c:when test="${empty loginUser}">
 		<button onClick="location.href='logIn.do'">로그인</button>
+		<button onClick="location.href='insert.do'">회원가입</button>
 	</c:when>
 	<c:otherwise>
-		<jsp:forward page="MapView.jsp" />
+		<button onClick="location.href='myPage.do'">마이페이지</button>
+		<button onClick="location.href='map.do'">지도</button>
 	</c:otherwise>
 </c:choose>
 </body>

@@ -32,6 +32,7 @@
 </head>
 
 <body>
+<%@include file = "../Views/common.jsp" %>
 	<div id="container">
 	   <div id="rvWrapper">
 	       <div id="roadview" style="width:100%;height:100%;"></div> <!-- 로드뷰를 표시할 div 입니다 -->

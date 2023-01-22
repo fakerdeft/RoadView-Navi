@@ -25,7 +25,7 @@ public class RoadViewNaviController {
 	// 회원가입 페이지로 이동
 	@GetMapping("insert.do")
 	public String insertUserForm() {
-		return "Views/InsertUserForm";
+		return "InsertUserForm";
 	}
 	
 	// 회원가입 메서드
@@ -87,7 +87,7 @@ public class RoadViewNaviController {
 	// 마이 페이지로 이동
 	@GetMapping("myPage.do")
 	public String myPage() {
-		return "Views/MyPage";
+		return "MyPage";
 	}
 	
 	// 회원 정보 수정
@@ -127,7 +127,7 @@ public class RoadViewNaviController {
 	// 지도 페이지로 이동
 	@GetMapping("map.do")
 	public ModelAndView goMapPage(ModelAndView mv) {
-		mv.setViewName("Views/MapView");
+		mv.setViewName("MapView");
 		return mv;
 	}
 	

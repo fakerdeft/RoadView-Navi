@@ -20,6 +20,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@include file = "../Views/common.jsp" %>
 </body>
 </html>
