@@ -4,52 +4,30 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.RoadViewNavi.Model.Repository.RoadViewNaviDao;
+import com.spring.RoadViewNavi.Model.Repository.UserDao;
 import com.spring.RoadViewNavi.Model.VO.User;
 
 @Service
-public class RoadViewNaviService {
+public class UserService {
 	@Autowired
-	private RoadViewNaviDao roadViewNaviDao;
+	private UserDao userDao;
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 	public int insertUser(User user) {
-		return roadViewNaviDao.insertUser(sqlSession, user);
+		return userDao.insertUser(sqlSession, user);
 	}
 
 	public User loginUser(User user) {
-		return roadViewNaviDao.loginUser(sqlSession, user);
+		return userDao.loginUser(sqlSession, user);
 	}
 
 	public int updateUser(User user) {
-		return roadViewNaviDao.updateUser(sqlSession, user);
+		return userDao.updateUser(sqlSession, user);
 	}
 
 	public int deleteUser(String userId) {
-		return roadViewNaviDao.deleteUser(sqlSession, userId);
+		return userDao.deleteUser(sqlSession, userId);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

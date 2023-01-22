@@ -6,45 +6,20 @@ import org.springframework.stereotype.Repository;
 import com.spring.RoadViewNavi.Model.VO.User;
 
 @Repository
-public class RoadViewNaviDao {
-
+public class UserDao {
 	public int insertUser(SqlSessionTemplate sqlSession, User user) {
-		return sqlSession.insert("RoadViewNaviMapper.insertUser", user);
+		return sqlSession.insert("UserMapper.insertUser", user);
 	}
 
 	public User loginUser(SqlSessionTemplate sqlSession, User user) {
-		return sqlSession.selectOne("RoadViewNaviMapper.loginUser", user);
+		return sqlSession.selectOne("UserMapper.loginUser", user);
 	}
 
 	public int updateUser(SqlSessionTemplate sqlSession, User user) {
-		return sqlSession.update("RoadViewNaviMapper.updateUser", user);
+		return sqlSession.update("UserMapper.updateUser", user);
 	}
 
 	public int deleteUser(SqlSessionTemplate sqlSession, String userId) {
-		return sqlSession.update("RoadViewNaviMapper.deleteUser", userId);
+		return sqlSession.update("UserMapper.deleteUser", userId);
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

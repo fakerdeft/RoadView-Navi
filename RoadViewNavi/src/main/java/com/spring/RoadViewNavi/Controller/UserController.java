@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.RoadViewNavi.Model.Service.RoadViewNaviService;
+import com.spring.RoadViewNavi.Model.Service.UserService;
 import com.spring.RoadViewNavi.Model.VO.User;
 
 @Controller
-public class RoadViewNaviController {
+public class UserController {
 	@Autowired
-	private RoadViewNaviService roadViewNaviService;
+	private UserService userService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -41,7 +41,7 @@ public class RoadViewNaviController {
 		//	  -web.xml에 spring-security.xml 파일을 로딩할 수 있게 작업
 		String encPwd = bCryptPasswordEncoder.encode(user.getUserPwd());
 		user.setUserPwd(encPwd);
-		int result = roadViewNaviService.insertUser(user);
+		int result = userService.insertUser(user);
 		if (result > 0) {
 			session.setAttribute("alertMsg","회원 가입 성공!");
 		} else if (result <= 0){
@@ -59,7 +59,7 @@ public class RoadViewNaviController {
 	// 로그인 메서드
 	@PostMapping("logIn.do")
 	public ModelAndView loginUser(User user, HttpSession session, ModelAndView mv) {
-		User loginUser = roadViewNaviService.loginUser(user);
+		User loginUser = userService.loginUser(user);
 		//loginUser : 아이디만으로 조회해온 회원정보
 		//loginUser의 userPwd 필드에는 암호화되어서 DB에 저장된 암호비밀번호가 들어있다.
 		//그 암호화된 비밀번호와 사용자가 입력한 비밀번호가 암호화되었을 시에 일치하게 되는지 
@@ -93,9 +93,9 @@ public class RoadViewNaviController {
 	// 회원 정보 수정
 	@RequestMapping("update.do")
 	public String updateMember(User user,HttpSession session,Model model) {
-		int updateResult = roadViewNaviService.updateUser(user);
+		int updateResult = userService.updateUser(user);
 		if(updateResult > 0) { // 성공시 session에 있던 기존 loginUser	지우고 새 loginUser
-			User updateUser = roadViewNaviService.loginUser(user);
+			User updateUser = userService.loginUser(user);
 			session.setAttribute("loginUser", updateUser);
 			
 			// 마이페이지 재요청(alertMsg)
@@ -112,7 +112,7 @@ public class RoadViewNaviController {
 	public String deleteUser(String userPwd, HttpSession session, Model model) {
 		User loginUser = (User)session.getAttribute("loginUser");
 		if(bCryptPasswordEncoder.matches(userPwd, loginUser.getUserPwd())) {
-			int result = roadViewNaviService.deleteUser(loginUser.getUserId());
+			int result = userService.deleteUser(loginUser.getUserId());
 			if(result > 0) { //성공
 				session.removeAttribute("loginUser");
 				session.setAttribute("alertMsg","탈퇴 성공!");
@@ -123,32 +123,4 @@ public class RoadViewNaviController {
 		model.addAttribute("alertMsg","회원탈퇴 실패!");
 		return "redirect:/";
 	}
-	
-	// 지도 페이지로 이동
-	@GetMapping("map.do")
-	public ModelAndView goMapPage(ModelAndView mv) {
-		mv.setViewName("MapView");
-		return mv;
-	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

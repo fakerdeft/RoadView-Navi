@@ -12,7 +12,8 @@
 
 	</typeAliases>
 	<mappers>
-		<mapper resource="/Mappers/RoadViewNavi-Mapper.xml" />
+		<mapper resource="/Mappers/Map-Mapper.xml" />
+		<mapper resource="/Mappers/User-Mapper.xml" />
 	</mappers>
 </configuration>
 

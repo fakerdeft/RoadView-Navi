@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="UserMapper">
+	<resultMap type="user" id="UserResult">
+		<result column="USER_NO" property="userNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PW" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="USER_PHONE" property="userPhone"/>
+		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="ENROLL_STATUS" property="updateDate"/>
+		<result column="UPDATE_DATE" property="enrollStatus"/>
+	</resultMap>
+	
+	<!-- 회원가입 -->
+	<insert id="insertUser" parameterType="user">
+		INSERT INTO USER_TBL (USER_NO
+							,USER_ID
+							,USER_PWD
+							,USER_NAME
+							,USER_PHONE
+							,USER_EMAIL) 
+			VALUES (SEQ_USERNO.NEXTVAL
+					,#{userId}
+					,#{userPwd}
+					,#{userName}
+					,#{userPhone}
+					,#{userEmail}) 	
+ 	</insert>
+	
+	<!-- 로그인 -->
+	<select id="loginUser" parameterType="user" resultMap="UserResult">
+		SELECT *
+		FROM USER_TBL
+		WHERE USER_ID = #{userId}
+		<!-- AND USER_PWD = #{userPwd} 암호화 전 -->
+		AND ENROLL_STATUS = 'Y'
+	</select>
+	
+	<!-- 회원정보수정 -->
+	<update id="updateUser" parameterType="user">
+		UPDATE USER_TBL
+		SET USER_NAME = #{userName},
+			USER_PHONE = #{userPhone},
+			USER_EMAIL = #{userEmail}
+			UPDATE_DATE = SYSDATE
+		WHERE USER_ID = #{userId}
+		AND ENROLL_STATUS = 'Y'
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<update id="deleteUser" parameterType="String">
+		UPDATE USER_TBL
+		SET UPDATE_DATE = SYSDATE,
+			ENROLL_STATUS = 'N'
+		WHERE USER_ID = #{userId}
+		AND ENROLL_STATUS = 'Y'
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
