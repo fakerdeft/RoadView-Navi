@@ -158,22 +158,22 @@
         }
         
         $('#id').focusout(function(){
-    		let memId = $('#id').val(); // id에 입력되는 값
+    		let userId = $('#id').val(); // id에 입력되는 값
     		let id_rule = /^[a-zA-Z]\w{3,14}$/;
     		
     		$.ajax({
-    			url : "IdCheck.me",
+    			url : "validate.me",
     			type : "post",
-    			data : {memId: memId},
+    			data : {userId: userId},
     			dataType : 'json',
     			success : function(result){
-    				if(memId == ""){
+    				if (userId == ""){
     					$("#cid").html('아이디를 입력하세요');
     					$("#id").attr("class","form-control is-invalid");
-    				}else if(result == 0){
+    				} else if(result == "FF"){
     					$("#cid").html('사용할 수 없는 아이디입니다');
     					$("#id").attr("class","form-control is-invalid");
-    				}else if(!id_rule.test(memId)){
+    				} else if(!id_rule.test(userId)){
     					$("#cid").html('4~15자의 영문/숫자를 조합하여 입력하세요');
     					$("#id").attr("class","form-control is-invalid");
     	            } else{
@@ -191,19 +191,19 @@
         	let pw_rule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
         	let pwc = $('#pwc').val();
         	
-        	if(pw == ""){
+        	if (pw == ""){
         		$("#cp").html('비밀번호를 입력하세요');
         		$("#pw").attr("class","form-control is-invalid");
         		$("#pwc").attr("class","form-control is-invalid");
-        	}else if(!pw_rule.test(pw)){
+        	} else if(!pw_rule.test(pw)){
         		$("#cp").html('영문자, 숫자, 특수문자(!@#$%^&*)를 포함해 8~16자만 가능합니다');
         		$("#pw").attr("class","form-control is-invalid");
         		$("#pwc").attr("class","form-control is-invalid");
-        	}else if(pw != pwc){
+        	} else if(pw != pwc){
         		$("#cp").html('비밀번호가 일치하지 않습니다');
         		$("#pw").attr("class","form-control is-invalid");
         		$("#pwc").attr("class","form-control is-invalid");
-        	}else{        		
+        	} else{        		
         		$("#cp").html('');
         		$("#pw").attr("class","form-control is-valid");
         		$("#pwc").attr("class","form-control is-valid");
@@ -215,19 +215,19 @@
         	let pw_rule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
         	let pwc = $('#pwc').val();
         	
-        	if(pw == ""){
+        	if (pw == ""){
         		$("#cp").html('비밀번호를 입력하세요');
         		$("#pw").attr("class","form-control is-invalid");
         		$("#pwc").attr("class","form-control is-invalid");
-        	}else if(!pw_rule.test(pw)){
+        	} else if(!pw_rule.test(pw)){
         		$("#cp").html('영문자, 숫자, 특수문자(!@#$%^&*)를 포함해 8~16자만 가능합니다');
         		$("#pw").attr("class","form-control is-invalid");
         		$("#pwc").attr("class","form-control is-invalid");
-        	}else if(pwc == "" || pw != pwc){
+        	} else if(pwc == "" || pw != pwc){
         		$("#cp").html('비밀번호가 일치하지 않습니다');
         		$("#pw").attr("class","form-control is-invalid");
         		$("#pwc").attr("class","form-control is-invalid");
-        	}else{        		
+        	} else{        		
         		$("#cp").html('');
         		$("#pw").attr("class","form-control is-valid");
         		$("#pwc").attr("class","form-control is-valid");

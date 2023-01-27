@@ -22,4 +22,8 @@ public class UserDao {
 	public int deleteUser(SqlSessionTemplate sqlSession, String userId) {
 		return sqlSession.update("UserMapper.deleteUser", userId);
 	}
+
+	public User validateDuplicationId(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("UserMapper.validateDuplicationId", userId);
+	}
 }

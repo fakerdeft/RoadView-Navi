@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.spring.RoadViewNavi.Model.Service.UserService;
 import com.spring.RoadViewNavi.Model.VO.User;
 
@@ -48,6 +50,16 @@ public class UserController {
 			model.addAttribute("alertMsg","회원 가입 실패!");
 		}
 		return "redirect:/";
+	}
+	
+	//회원가입시 아이디 중복 체크
+	@ResponseBody
+	@RequestMapping(value="validate.me", produces="application/json; charset=UTF-8")
+	public String validateDuplicationId(String userId) {
+		if(userService.validateDuplicationId(userId) != null) {
+			return new Gson().toJson("TT");
+		}
+		return new Gson().toJson("FF");
 	}
 	
 	// 로그인 페이지로 이동

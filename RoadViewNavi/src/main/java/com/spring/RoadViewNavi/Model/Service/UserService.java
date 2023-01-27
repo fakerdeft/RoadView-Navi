@@ -30,4 +30,8 @@ public class UserService {
 	public int deleteUser(String userId) {
 		return userDao.deleteUser(sqlSession, userId);
 	}
+
+	public User validateDuplicationId(String userId) {
+		return userDao.validateDuplicationId(sqlSession,userId);
+	}
 }

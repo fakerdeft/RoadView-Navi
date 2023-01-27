@@ -58,6 +58,13 @@
 		AND ENROLL_STATUS = 'Y'
 	</update>
 	
+	<select id="validateDuplicationId" parameterType="String" resultMap="UserResult">
+		SELECT *
+		FROM USER_TBL
+		WHERE USER_ID = #{userId}
+		AND ENROLL_STATUS = 'Y'
+	</select>
+	
 </mapper>
 
 
