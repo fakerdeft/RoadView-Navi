@@ -30,4 +30,8 @@ public class UserDao {
 	public User validateDuplicationPhone(SqlSessionTemplate sqlSession, String userPhone) {
 		return sqlSession.selectOne("UserMapper.validateDuplicationPhone", userPhone);
 	}
+
+	public User validateDuplicationEmail(SqlSessionTemplate sqlSession, String userEmail) {
+		return sqlSession.selectOne("UserMapper.validateDuplicationEmail", userEmail);
+	}
 }

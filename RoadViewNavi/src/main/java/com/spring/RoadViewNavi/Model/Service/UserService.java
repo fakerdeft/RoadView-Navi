@@ -38,4 +38,8 @@ public class UserService {
 	public User validateDuplicationPhone(String userPhone) {
 		return userDao.validateDuplicationPhone(sqlSession,userPhone);
 	}
+
+	public User validateDuplicationEmail(String userEmail) {
+		return userDao.validateDuplicationEmail(sqlSession,userEmail);
+	}
 }

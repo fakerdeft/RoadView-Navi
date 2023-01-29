@@ -72,6 +72,16 @@ public class UserController {
 		return new Gson().toJson("FF");
 	}
 	
+	//회원가입시 이메일 중복 체크
+	@ResponseBody
+	@RequestMapping(value="validateDuplicationEmail.do", produces="application/json; charset=UTF-8")
+	public String validateDuplicationEmail(String userEmail) {
+		if(userService.validateDuplicationEmail(userEmail) != null){
+			return new Gson().toJson("TT");
+		}
+		return new Gson().toJson("FF");
+	}
+	
 	// 로그인 페이지로 이동
 	@GetMapping("logIn.do")
 	public String loginUser(){

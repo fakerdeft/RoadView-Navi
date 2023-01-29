@@ -281,22 +281,22 @@
     	})
         
         $('#email').focusout(function(){
-        	let memEmail = $("#email").val();
+        	let userEmail = $("#email").val();
             let email_rule =  /^[0-9a-zA-Z]{1,}@[0-9a-zA-Z]{1,}.[a-zA-Z]{2,3}$/;
     		
     		$.ajax({
-    			url : "emailCheck.me",
+    			url : "validateDuplicationEmail.do",
     			type : "post",
-    			data : {memEmail: memEmail},
+    			data : {userEmail: userEmail},
     			dataType : 'json',
     			success : function(result){
-    				if(memEmail == ""){
+    				if(userEmail == ""){
     	        		$("#ce").html('이메일을 입력하세요');
     	        		$("#email").attr("class","form-control is-invalid");
-    	        	} else if(result == 0){
+    	        	} else if(result == "FF"){
     	        		$("#ce").html('사용할 수 없는 이메일입니다');
     	        		$("#email").attr("class","form-control is-invalid");
-    	        	} else if(!email_rule.test(memEmail)){
+    	        	} else if(!email_rule.test(userEmail)){
     	        		$("#ce").html('이메일 형식에 맞춰서 입력하세요');
     	        		$("#email").attr("class","form-control is-invalid");
     	        	} else{   		
