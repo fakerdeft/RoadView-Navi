@@ -57,9 +57,9 @@ public class UserController {
 	@RequestMapping(value="validateDuplicationId.do", produces="application/json; charset=UTF-8")
 	public String validateDuplicationId(String userId){
 		if(userService.validateDuplicationId(userId) != null){
-			return new Gson().toJson("TT");
+			return new Gson().toJson("FF");
 		}
-		return new Gson().toJson("FF");
+		return new Gson().toJson("TT");
 	}
 	
 	//회원가입시 핸드폰 번호 중복 체크
@@ -67,9 +67,9 @@ public class UserController {
 	@RequestMapping(value="validateDuplicationPhone.do", produces="application/json; charset=UTF-8")
 	public String validateDuplicationPhone(String userPhone) {
 		if(userService.validateDuplicationPhone(userPhone) != null){
-			return new Gson().toJson("TT");
+			return new Gson().toJson("FF");
 		}
-		return new Gson().toJson("FF");
+		return new Gson().toJson("TT");
 	}
 	
 	//회원가입시 이메일 중복 체크
@@ -77,9 +77,9 @@ public class UserController {
 	@RequestMapping(value="validateDuplicationEmail.do", produces="application/json; charset=UTF-8")
 	public String validateDuplicationEmail(String userEmail) {
 		if(userService.validateDuplicationEmail(userEmail) != null){
-			return new Gson().toJson("TT");
+			return new Gson().toJson("FF");
 		}
-		return new Gson().toJson("FF");
+		return new Gson().toJson("TT");
 	}
 	
 	// 로그인 페이지로 이동
@@ -103,7 +103,7 @@ public class UserController {
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/"); //메인화면 재요청
 			return mv;
-		}	
+		}
 		session.setAttribute("alertMsg", "로그인 실패!");
 		mv.setViewName("redirect:/");
 		return mv;

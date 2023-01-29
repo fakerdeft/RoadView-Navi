@@ -58,7 +58,7 @@
             <form action="insert.do" method="post">
                 <div class="form-group">
                		<label for="exampleInputEmail1" class="form-label mt-4">아이디</label>
-                    <input type="text" class="form-control" name="userId" id="id" placeholder="4~15자의 영문/숫자를 조합하여 입력">
+                    <input type="text" class="form-control" name="userId" id="id" placeholder="4~16자의 영문/숫자를 조합하여 입력">
                 	<div class="invalid-feedback" id="cid">아이디를 입력하세요</div>
                 </div>
 				<div class="form-group has-success">
@@ -110,12 +110,12 @@
     <script> 
         function register(){
             var id = document.getElementById("id").value;
-            var id_rule = /^[a-zA-Z]\w{3,16}$/;
+            var id_rule = /^[a-zA-Z]\w{3,15}$/;
             var pw = document.getElementById("pw").value;
             var pw_rule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
             var pwc = document.getElementById("pwc").value;
             var name = document.getElementById("name").value;
-            var name_rule = /^[가-힣]{2,6}$/;
+            var name_rule = /^[가-힣]{2,5}$/;
             var phone = document.getElementById("phone").value;
             var email = document.getElementById("email").value;
             var email_rule =  /^[0-9a-zA-Z]{1,}@[0-9a-zA-Z]{1,}.[a-zA-Z]{2,3}$/;
@@ -125,7 +125,7 @@
                 alert("아이디를 입력해주세요.")
                 return false;
             } else if(!id_rule.test(id)){
-                alert("아이디는 영문자, 숫자를 포함해 4~15자만 가능합니다.")
+                alert("아이디는 영문자, 숫자를 포함해 4~16자만 가능합니다.")
                 return false;
             } else if(pw == ""){
                 alert("비밀번호를 입력해주세요.")
@@ -159,7 +159,7 @@
         
         $('#id').focusout(function(){
     		let userId = $('#id').val(); // id에 입력되는 값
-    		let id_rule = /^[a-zA-Z]\w{3,16}$/;
+    		let id_rule = /^[a-zA-Z]\w{3,15}$/;
     		
     		$.ajax({
     			url : "validateDuplicationId.do",
@@ -236,7 +236,7 @@
         
         $("#name").focusout(function(){
         	let name = $("#name").val();
-            let name_rule = /^[가-힣]{2,6}$/;
+            let name_rule = /^[가-힣]{2,5}$/;
             
             if(name == ""){
         		$("#cn").html('이름을 입력하세요');
@@ -252,7 +252,7 @@
         
         $('#phone').focusout(function(){
         	let userPhone = $("#phone").val();
-            let phone_rule = /^[0-9]{1,11}$/;
+            let phone_rule = /^[0-9]{10,11}$/;
     		
     		$.ajax({
     			url : "validateDuplicationPhone.do",
@@ -267,7 +267,7 @@
     	        		$("#cpn").html('사용할 수 없는 핸드폰 번호입니다.');
     	        		$("#phone").attr("class","form-control is-invalid");
     	        	} else if(!phone_rule.test(userPhone)){
-    	        		$("#cpn").html('숫자만 가능합니다');
+    	        		$("#cpn").html('10~11자리 숫자만 가능합니다');
     	        		$("#phone").attr("class","form-control is-invalid");
     	        	} else{   		
     	        		$("#cpn").html('');
