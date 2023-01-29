@@ -110,12 +110,12 @@
     <script> 
         function register(){
             var id = document.getElementById("id").value;
-            var id_rule = /^[a-zA-Z]\w{3,14}$/;
+            var id_rule = /^[a-zA-Z]\w{3,16}$/;
             var pw = document.getElementById("pw").value;
             var pw_rule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
             var pwc = document.getElementById("pwc").value;
             var name = document.getElementById("name").value;
-            var name_rule = /^[가-힣]{2,}$/;
+            var name_rule = /^[가-힣]{2,6}$/;
             var phone = document.getElementById("phone").value;
             var email = document.getElementById("email").value;
             var email_rule =  /^[0-9a-zA-Z]{1,}@[0-9a-zA-Z]{1,}.[a-zA-Z]{2,3}$/;
@@ -159,7 +159,7 @@
         
         $('#id').focusout(function(){
     		let userId = $('#id').val(); // id에 입력되는 값
-    		let id_rule = /^[a-zA-Z]\w{3,14}$/;
+    		let id_rule = /^[a-zA-Z]\w{3,16}$/;
     		
     		$.ajax({
     			url : "validateDuplicationId.do",
@@ -236,7 +236,7 @@
         
         $("#name").focusout(function(){
         	let name = $("#name").val();
-            let name_rule = /^[가-힣]{2,}$/;
+            let name_rule = /^[가-힣]{2,6}$/;
             
             if(name == ""){
         		$("#cn").html('이름을 입력하세요');
@@ -252,7 +252,7 @@
         
         $('#phone').focusout(function(){
         	let userPhone = $("#phone").val();
-            let phone_rule = /^[0-9]{1,}$/;
+            let phone_rule = /^[0-9]{1,11}$/;
     		
     		$.ajax({
     			url : "validateDuplicationPhone.do",
