@@ -26,4 +26,8 @@ public class UserDao {
 	public User validateDuplicationId(SqlSessionTemplate sqlSession, String userId) {
 		return sqlSession.selectOne("UserMapper.validateDuplicationId", userId);
 	}
+
+	public User validateDuplicationPhone(SqlSessionTemplate sqlSession, String userPhone) {
+		return sqlSession.selectOne("UserMapper.validateDuplicationPhone", userPhone);
+	}
 }

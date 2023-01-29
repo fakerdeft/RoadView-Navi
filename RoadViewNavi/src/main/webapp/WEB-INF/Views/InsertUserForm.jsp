@@ -162,12 +162,12 @@
     		let id_rule = /^[a-zA-Z]\w{3,14}$/;
     		
     		$.ajax({
-    			url : "validate.me",
+    			url : "validateDuplicationId.do",
     			type : "post",
     			data : {userId: userId},
     			dataType : 'json',
     			success : function(result){
-    				if (userId == ""){
+    				if(userId == ""){
     					$("#cid").html('아이디를 입력하세요');
     					$("#id").attr("class","form-control is-invalid");
     				} else if(result == "FF"){
@@ -191,7 +191,7 @@
         	let pw_rule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
         	let pwc = $('#pwc').val();
         	
-        	if (pw == ""){
+        	if(pw == ""){
         		$("#cp").html('비밀번호를 입력하세요');
         		$("#pw").attr("class","form-control is-invalid");
         		$("#pwc").attr("class","form-control is-invalid");
@@ -215,7 +215,7 @@
         	let pw_rule = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
         	let pwc = $('#pwc').val();
         	
-        	if (pw == ""){
+        	if(pw == ""){
         		$("#cp").html('비밀번호를 입력하세요');
         		$("#pw").attr("class","form-control is-invalid");
         		$("#pwc").attr("class","form-control is-invalid");
@@ -241,35 +241,35 @@
             if(name == ""){
         		$("#cn").html('이름을 입력하세요');
         		$("#name").attr("class","form-control is-invalid");
-        	}else if(!name_rule.test(name)){
+        	} else if(!name_rule.test(name)){
         		$("#cn").html('2글자 이상 한글만 가능합니다');
         		$("#name").attr("class","form-control is-invalid");
-        	}else{   		
+        	} else{   		
         		$("#cn").html('');
         		$("#name").attr("class","form-control is-valid");
         	}
         })
         
         $('#phone').focusout(function(){
-        	let memPhone = $("#phone").val();
+        	let userPhone = $("#phone").val();
             let phone_rule = /^[0-9]{1,}$/;
     		
     		$.ajax({
-    			url : "phoneCheck.me",
+    			url : "validateDuplicationPhone.do",
     			type : "post",
-    			data : {memPhone: memPhone},
+    			data : {userPhone: userPhone},
     			dataType : 'json',
     			success : function(result){
-    				if(memPhone == ""){
-    	        		$("#cpn").html('핸드폰번호를 입력하세요');
+    				if(userPhone == ""){
+    	        		$("#cpn").html('핸드폰 번호를 입력하세요');
     	        		$("#phone").attr("class","form-control is-invalid");
-    	        	}else if(result == 0){
+    	        	} else if(result == "FF"){
     	        		$("#cpn").html('사용할 수 없는 핸드폰 번호입니다.');
     	        		$("#phone").attr("class","form-control is-invalid");
-    	        	}else if(!phone_rule.test(memPhone)){
+    	        	} else if(!phone_rule.test(userPhone)){
     	        		$("#cpn").html('숫자만 가능합니다');
     	        		$("#phone").attr("class","form-control is-invalid");
-    	        	}else{   		
+    	        	} else{   		
     	        		$("#cpn").html('');
     	        		$("#phone").attr("class","form-control is-valid");
     	        	}
@@ -293,13 +293,13 @@
     				if(memEmail == ""){
     	        		$("#ce").html('이메일을 입력하세요');
     	        		$("#email").attr("class","form-control is-invalid");
-    	        	}else if(result == 0){
+    	        	} else if(result == 0){
     	        		$("#ce").html('사용할 수 없는 이메일입니다');
     	        		$("#email").attr("class","form-control is-invalid");
-    	        	}else if(!email_rule.test(memEmail)){
+    	        	} else if(!email_rule.test(memEmail)){
     	        		$("#ce").html('이메일 형식에 맞춰서 입력하세요');
     	        		$("#email").attr("class","form-control is-invalid");
-    	        	}else{   		
+    	        	} else{   		
     	        		$("#ce").html('');
     	        		$("#email").attr("class","form-control is-valid");
     	        	}
@@ -316,7 +316,7 @@
             if(address == ""){
         		$("#ca").html('주소를 입력하세요');
         		$("#address").attr("class","form-control is-invalid");
-        	}else{   		
+        	} else{   		
         		$("#ca").html('');
         		$("#address").attr("class","form-control is-valid");
         	}
@@ -328,7 +328,7 @@
             if(address == ""){
         		$("#ca").html('주소를 입력하세요');
         		$("#address").attr("class","form-control is-invalid");
-        	}else{   		
+        	} else{   		
         		$("#ca").html('');
         		$("#address").attr("class","form-control is-valid");
         	}

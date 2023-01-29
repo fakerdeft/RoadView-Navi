@@ -34,4 +34,8 @@ public class UserService {
 	public User validateDuplicationId(String userId) {
 		return userDao.validateDuplicationId(sqlSession,userId);
 	}
+
+	public User validateDuplicationPhone(String userPhone) {
+		return userDao.validateDuplicationPhone(sqlSession,userPhone);
+	}
 }

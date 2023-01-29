@@ -26,13 +26,13 @@ public class UserController {
 	
 	// 회원가입 페이지로 이동
 	@GetMapping("insert.do")
-	public String insertUserForm() {
+	public String insertUserForm(){
 		return "InsertUserForm";
 	}
 	
 	// 회원가입 메서드
 	@PostMapping("insert.do")
-	public String insertUser(User user, HttpSession session, Model model) {
+	public String insertUser(User user, HttpSession session, Model model){
 		// 1. 한글 깨짐 - web.xml에서 encodingFilter를 통해 해결
 		// 2. 나이에 빈값이 들어오면 typeMismatchException 발생
 		//	  -User VO에 age필드를 String자료형으로 변경하여 해결 (lombok활용)
@@ -44,7 +44,7 @@ public class UserController {
 		String encPwd = bCryptPasswordEncoder.encode(user.getUserPwd());
 		user.setUserPwd(encPwd);
 		int result = userService.insertUser(user);
-		if (result > 0) {
+		if(result > 0){
 			session.setAttribute("alertMsg","회원 가입 성공!");
 		} else if (result <= 0){
 			model.addAttribute("alertMsg","회원 가입 실패!");
@@ -54,9 +54,19 @@ public class UserController {
 	
 	//회원가입시 아이디 중복 체크
 	@ResponseBody
-	@RequestMapping(value="validate.me", produces="application/json; charset=UTF-8")
-	public String validateDuplicationId(String userId) {
-		if(userService.validateDuplicationId(userId) != null) {
+	@RequestMapping(value="validateDuplicationId.do", produces="application/json; charset=UTF-8")
+	public String validateDuplicationId(String userId){
+		if(userService.validateDuplicationId(userId) != null){
+			return new Gson().toJson("TT");
+		}
+		return new Gson().toJson("FF");
+	}
+	
+	//회원가입시 핸드폰 번호 중복 체크
+	@ResponseBody
+	@RequestMapping(value="validateDuplicationPhone.do", produces="application/json; charset=UTF-8")
+	public String validateDuplicationPhone(String userPhone) {
+		if(userService.validateDuplicationPhone(userPhone) != null){
 			return new Gson().toJson("TT");
 		}
 		return new Gson().toJson("FF");
@@ -64,13 +74,13 @@ public class UserController {
 	
 	// 로그인 페이지로 이동
 	@GetMapping("logIn.do")
-	public String loginUser() {
+	public String loginUser(){
 		return "LoginView";
 	}
 	
 	// 로그인 메서드
 	@PostMapping("logIn.do")
-	public ModelAndView loginUser(User user, HttpSession session, ModelAndView mv) {
+	public ModelAndView loginUser(User user, HttpSession session, ModelAndView mv){
 		User loginUser = userService.loginUser(user);
 		//loginUser : 아이디만으로 조회해온 회원정보
 		//loginUser의 userPwd 필드에는 암호화되어서 DB에 저장된 암호비밀번호가 들어있다.
@@ -79,7 +89,7 @@ public class UserController {
 		//이때 사용하는 메서드는 BCryptPasswordEncoder 객체의 matches 메서드이다.
 		//matches(평문,암호문)을 작성하면 내부적으로 복호화 작업이 이루어져
 		//두 데이터가 일치하는지 확인하여 true/false로 반환한다.
-		if (loginUser != null && bCryptPasswordEncoder.matches(user.getUserPwd(), loginUser.getUserPwd())) {
+		if (loginUser != null && bCryptPasswordEncoder.matches(user.getUserPwd(), loginUser.getUserPwd())){
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/"); //메인화면 재요청
 			return mv;
@@ -91,20 +101,20 @@ public class UserController {
 	
 	// 로그아웃
 	@RequestMapping("logOut.do")
-	public String logOutUser(HttpSession session) {
+	public String logOutUser(HttpSession session){
 		session.removeAttribute("loginUser");
 		return "redirect:/";
 	}
 	
 	// 마이 페이지로 이동
 	@GetMapping("myPage.do")
-	public String myPage() {
+	public String myPage(){
 		return "MyPage";
 	}
 	
 	// 회원 정보 수정
 	@RequestMapping("update.do")
-	public String updateMember(User user,HttpSession session,Model model) {
+	public String updateMember(User user,HttpSession session,Model model){
 		int updateResult = userService.updateUser(user);
 		if(updateResult > 0) { // 성공시 session에 있던 기존 loginUser	지우고 새 loginUser
 			User updateUser = userService.loginUser(user);
@@ -121,11 +131,11 @@ public class UserController {
 	
 	// 회원탈퇴
 	@RequestMapping("delete.do")
-	public String deleteUser(String userPwd, HttpSession session, Model model) {
+	public String deleteUser(String userPwd, HttpSession session, Model model){
 		User loginUser = (User)session.getAttribute("loginUser");
-		if(bCryptPasswordEncoder.matches(userPwd, loginUser.getUserPwd())) {
+		if(bCryptPasswordEncoder.matches(userPwd, loginUser.getUserPwd())){
 			int result = userService.deleteUser(loginUser.getUserId());
-			if(result > 0) { //성공
+			if(result > 0){ //성공
 				session.removeAttribute("loginUser");
 				session.setAttribute("alertMsg","탈퇴 성공!");
 				return "redirect:/";
