@@ -16,6 +16,8 @@ public class User {
 	private String userName;
 	private String userPhone;
 	private String userEmail;
+	private String userAddress;
+	private String userAddressDetail;
 	private Date enrollDate;
 	private Date updateDate;
 	private String enrollStatus;

@@ -8,6 +8,8 @@
 		<result column="USER_NAME" property="userName"/>
 		<result column="USER_PHONE" property="userPhone"/>
 		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_ADDRESS" property="userAddress"/>
+		<result column="USER_ADDRESS_DETAIL" property="userAddressDetail"/>
 		<result column="ENROLL_DATE" property="enrollDate"/>
 		<result column="ENROLL_STATUS" property="updateDate"/>
 		<result column="UPDATE_DATE" property="enrollStatus"/>
@@ -20,13 +22,17 @@
 							,USER_PWD
 							,USER_NAME
 							,USER_PHONE
-							,USER_EMAIL) 
+							,USER_EMAIL
+							,USER_ADDRESS
+							,USER_ADDRESS_DETAIL) 
 			VALUES (SEQ_USERNO.NEXTVAL
 					,#{userId}
 					,#{userPwd}
 					,#{userName}
 					,#{userPhone}
-					,#{userEmail}) 	
+					,#{userEmail}
+					,#{userAddress}
+					,#{userAddressDetail})
  	</insert>
  	
  	<!-- 아이디 중복 체크 -->
