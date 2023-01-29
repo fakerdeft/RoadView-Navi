@@ -12,6 +12,7 @@
 		<result column="USER_ADDRESS_DETAIL" property="userAddressDetail"/>
 		<result column="ENROLL_DATE" property="enrollDate"/>
 		<result column="UPDATE_DATE" property="updateDate"/>
+		<result column="PAYMENT_STATUS" property="paymentStatus"/>
 		<result column="ENROLL_STATUS" property="enrollStatus"/>
 	</resultMap>
 	

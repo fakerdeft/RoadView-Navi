@@ -20,6 +20,7 @@ public class User {
 	private String userAddressDetail;
 	private Date enrollDate;
 	private Date updateDate;
+	private String paymentStatus;
 	private String enrollStatus;
 }
 

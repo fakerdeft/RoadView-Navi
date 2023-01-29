@@ -58,7 +58,6 @@
 </head>
 <body>
 <%@include file = "../Views/common.jsp" %>
-
-
+<button>결제하기</button>
 </body>
 </html>
