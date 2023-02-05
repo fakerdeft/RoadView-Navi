@@ -28,9 +28,6 @@
   	<form action="findId.do" method="post" id="login-form">         
 	    <table align="center" id="login1">
 	        <tr align="center">
-	            <td style="padding:50px"></td>
-	        </tr>
-	        <tr align="center">
 	            <td><input type="text" name="userName" class="inputs" id="userName" placeholder="이름" required></td>
 	        </tr>
 	        <tr align="center">

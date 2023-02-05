@@ -1,5 +1,7 @@
 package com.spring.RoadViewNavi.Model.Repository;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -33,5 +35,10 @@ public class UserDao {
 
 	public User validateDuplicationEmail(SqlSessionTemplate sqlSession, String userEmail) {
 		return sqlSession.selectOne("UserMapper.validateDuplicationEmail", userEmail);
+	}
+	
+	public User findUserId(SqlSessionTemplate sqlSession, HashMap<String,String> userNameAndPhone) {
+		System.out.println(userNameAndPhone);
+		return sqlSession.selectOne("UserMapper.findUserId", userNameAndPhone);
 	}
 }

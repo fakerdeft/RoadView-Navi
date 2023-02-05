@@ -68,6 +68,15 @@
 		AND ENROLL_STATUS = '회원'
 	</select>
 	
+	<!-- 아이디 중복 체크 -->
+ 	<select id="findUserId" parameterType="HashMap" resultMap="UserResult">
+		SELECT *
+		FROM USER_TBL 
+		WHERE USER_NAME = #{userName}
+		AND USER_PHONE = #{userPhone}
+		AND ENROLL_STATUS = '회원'
+	</select>
+	
 	<!-- 회원정보수정 -->
 	<update id="updateUser" parameterType="user">
 		UPDATE USER_TBL

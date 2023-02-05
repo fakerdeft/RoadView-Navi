@@ -1,5 +1,7 @@
 package com.spring.RoadViewNavi.Model.Service;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,14 +34,18 @@ public class UserService {
 	}
 
 	public User validateDuplicationId(String userId) {
-		return userDao.validateDuplicationId(sqlSession,userId);
+		return userDao.validateDuplicationId(sqlSession, userId);
 	}
 
 	public User validateDuplicationPhone(String userPhone) {
-		return userDao.validateDuplicationPhone(sqlSession,userPhone);
+		return userDao.validateDuplicationPhone(sqlSession, userPhone);
 	}
 
 	public User validateDuplicationEmail(String userEmail) {
-		return userDao.validateDuplicationEmail(sqlSession,userEmail);
+		return userDao.validateDuplicationEmail(sqlSession, userEmail);
+	}
+	
+	public User findUserId(HashMap<String,String> userNameAndPhone) {
+		return userDao.findUserId(sqlSession, userNameAndPhone);
 	}
 }

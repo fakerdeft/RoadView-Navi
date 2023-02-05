@@ -1,7 +1,10 @@
 package com.spring.RoadViewNavi.Controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -117,13 +120,17 @@ public class UserController {
 	
 	// 아이디 찾기 메서드
 	@PostMapping("findId.do")
-	public String findId(String userId, HttpSession session, Model model){
-		if(userService.validateDuplicationId(userId) != null){
-			return new Gson().toJson("FF");
+	public String findId(@Param("userName") String userName, @Param("userPhone") String userPhone, Model model){
+		HashMap<String, String> userNameAndPhone = new HashMap<String, String>();
+		userNameAndPhone.put("userName", userName);
+		userNameAndPhone.put("userPhone", userPhone);
+		String findUserId = userService.findUserId(userNameAndPhone).getUserId();
+		if(findUserId != ""){
+			model.addAttribute("findUserId", findUserId);
+			return "FindIdSuccessView";
 		}
-		// 실패시 에러페이지
-		model.addAttribute("alertMsg","회원 정보 수정 실패!");
-		return "redirect:/";
+		// 찾기 실패
+		return "FindIdFailView";
 	}
 	
 	// 로그아웃
