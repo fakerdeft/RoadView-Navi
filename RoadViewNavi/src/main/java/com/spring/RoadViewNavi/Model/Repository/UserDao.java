@@ -38,7 +38,6 @@ public class UserDao {
 	}
 	
 	public User findUserId(SqlSessionTemplate sqlSession, HashMap<String,String> userNameAndPhone) {
-		System.out.println(userNameAndPhone);
 		return sqlSession.selectOne("UserMapper.findUserId", userNameAndPhone);
 	}
 }

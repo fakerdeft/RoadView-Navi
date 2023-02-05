@@ -17,12 +17,13 @@
 </head>
 <body>
 <%@include file = "../Views/common.jsp" %>
-<div align="center" style="width:1900px; position:relative;">
+<div align="center">
    	<div id="head" align="center">아이디 찾기 성공</div>
    		<div>
    			<h2>${findUserId}</h2>
    		</div>
    	<div>
+   	<br>
    		<button type="button" class="btn btn-info" id="btn-findPw" onclick="location.replace('findPw.do')">비밀번호 찾기</button>
    		<button type="button" class="btn btn-primary" id="btn-goHome" onclick="location.replace('/RoadViewNavi')">홈으로 가기</button>
    	</div>
