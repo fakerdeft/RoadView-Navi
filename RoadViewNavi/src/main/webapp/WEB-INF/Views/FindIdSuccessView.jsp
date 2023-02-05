@@ -23,7 +23,6 @@
    			<h2>${findUserId}</h2>
    		</div>
    	<div>
-   	<br>
    		<button type="button" class="btn btn-info" id="btn-findPw" onclick="location.replace('findPw.do')">비밀번호 찾기</button>
    		<button type="button" class="btn btn-primary" id="btn-goHome" onclick="location.replace('/RoadViewNavi')">홈으로 가기</button>
    	</div>
