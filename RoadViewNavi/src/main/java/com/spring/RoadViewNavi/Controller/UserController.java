@@ -133,6 +133,12 @@ public class UserController {
 		return "FindIdFailView";
 	}
 	
+	// 비밀번호 찾기 페이지로 이동
+	@GetMapping("findPw.do")
+	public String findPw(){
+		return "FindPwView";
+	}
+	
 	// 로그아웃
 	@RequestMapping("logOut.do")
 	public String logOutUser(HttpSession session){
