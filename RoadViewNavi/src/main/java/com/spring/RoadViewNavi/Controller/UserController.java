@@ -109,6 +109,23 @@ public class UserController {
 		return mv;
 	}
 	
+	// 아이디 찾기 페이지로 이동
+	@GetMapping("findId.do")
+	public String findId(){
+		return "FindIdView";
+	}
+	
+	// 아이디 찾기 메서드
+	@PostMapping("findId.do")
+	public String findId(String userId, HttpSession session, Model model){
+		if(userService.validateDuplicationId(userId) != null){
+			return new Gson().toJson("FF");
+		}
+		// 실패시 에러페이지
+		model.addAttribute("alertMsg","회원 정보 수정 실패!");
+		return "redirect:/";
+	}
+	
 	// 로그아웃
 	@RequestMapping("logOut.do")
 	public String logOutUser(HttpSession session){
@@ -124,7 +141,7 @@ public class UserController {
 	
 	// 회원 정보 수정
 	@RequestMapping("update.do")
-	public String updateMember(User user,HttpSession session,Model model){
+	public String updateMember(User user, HttpSession session, Model model){
 		int updateResult = userService.updateUser(user);
 		if(updateResult > 0) { // 성공시 session에 있던 기존 loginUser	지우고 새 loginUser
 			User updateUser = userService.loginUser(user);
