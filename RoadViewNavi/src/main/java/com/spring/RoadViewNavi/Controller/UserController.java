@@ -102,7 +102,7 @@ public class UserController {
 		//이때 사용하는 메서드는 BCryptPasswordEncoder 객체의 matches 메서드이다.
 		//matches(평문,암호문)을 작성하면 내부적으로 복호화 작업이 이루어져
 		//두 데이터가 일치하는지 확인하여 true/false로 반환한다.
-		if (loginUser != null && bCryptPasswordEncoder.matches(user.getUserPwd(), loginUser.getUserPwd())){
+		if(loginUser != null && bCryptPasswordEncoder.matches(user.getUserPwd(), loginUser.getUserPwd())){
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/"); //메인화면 재요청
 			return mv;

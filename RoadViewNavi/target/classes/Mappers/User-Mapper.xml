@@ -68,7 +68,7 @@
 		AND ENROLL_STATUS = '회원'
 	</select>
 	
-	<!-- 아이디 중복 체크 -->
+	<!-- 아이디 찾기 -->
  	<select id="findUserId" parameterType="HashMap" resultMap="UserResult">
 		SELECT *
 		FROM USER_TBL 
